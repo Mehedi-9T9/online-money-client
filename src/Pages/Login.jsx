@@ -1,12 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import UseAxiosPublic from '../Hooks/UseAxiosPublic';
 
-const login = () => {
+const Login = () => {
+    const navigate = useNavigate()
+    const instance = UseAxiosPublic()
     const handleLogin = (e) => {
         e.preventDefault()
         const emailorPhone = e.target.emailorPhone.value
         const pin = e.target.pin.value
         console.log(emailorPhone, pin);
+        const loginInfo = { emailorPhone, pin }
+        instance.post("/login", loginInfo)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.message == "success") {
+                    navigate("/")
+                    localStorage.setItem("emailorNumber", emailorPhone)
+
+                }
+            })
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -38,4 +51,4 @@ const login = () => {
     );
 };
 
-export default login;
+export default Login;

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const Layout = () => {
     const location = useLocation()
+    const navigate = useNavigate()
     const userCategory = [
         {
             title: "Overview",
@@ -29,12 +30,16 @@ const Layout = () => {
             path: "/transiction"
         },
     ]
+    const handleLogout = () => {
+        localStorage.removeItem("emailorNumber")
+        navigate("/login")
+    }
     return (
         <div className='max-w-7xl mx-auto'>
             <header>
                 <div className='flex bg-red-200 text-white font-bold justify-between px-20 items-center py-3'>
                     <h2>Online-Money</h2>
-                    <button className='btn'>Login</button>
+                    <button onClick={handleLogout} className='btn'>Log Out</button>
                 </div>
             </header>
 

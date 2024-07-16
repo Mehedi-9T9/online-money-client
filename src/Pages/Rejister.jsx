@@ -1,7 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+
+
+import { Link, useNavigate } from 'react-router-dom';
+import UseAxiosPublic from '../Hooks/UseAxiosPublic';
 
 const Rejister = () => {
+    const instance = UseAxiosPublic()
+    const navigate = useNavigate()
+    console.log(instance);
     const handleRejister = (e) => {
         e.preventDefault()
         const form = e.target
@@ -12,6 +17,18 @@ const Rejister = () => {
         const role = form.role.value
 
         console.log(name, email, phone, pin, role);
+        const userInfo = { name, email, phone, pin, role, status: "pending", balance: 0 }
+        instance.post("/newUser", userInfo)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.insertedId) {
+                    navigate("/")
+                }
+                if (res.data.message) {
+                    console.log(res.data.message);
+                }
+
+            })
 
     }
     return (
