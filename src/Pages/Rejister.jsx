@@ -23,6 +23,7 @@ const Rejister = () => {
                 console.log(res.data)
                 if (res.data.insertedId) {
                     navigate("/")
+                    localStorage.setItem("emailorNumber", phone)
                 }
                 if (res.data.message) {
                     console.log(res.data.message);

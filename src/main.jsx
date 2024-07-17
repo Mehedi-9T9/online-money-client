@@ -8,6 +8,13 @@ import Login from './Pages/Login.jsx';
 import Balance from './Pages/Balance.jsx';
 import Overview from './Pages/Overview.jsx';
 import Rejister from './Pages/Rejister.jsx';
+import SendMoney from './Pages/SendMoney.jsx';
+import Cashout from './Pages/Cashout.jsx';
+import Cashin from './assets/Cashin.jsx';
+import TransactionManage from './Pages/Agent/TransactionManage.jsx';
+import AgentTransaction from './Pages/Agent/AgentTransaction.jsx';
+import UserManagement from './Pages/Admin/UserManagement.jsx';
+import AllTransaction from './Pages/Admin/AllTransaction.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +28,36 @@ const router = createBrowserRouter([
       {
         path: "/balance",
         element: <Balance></Balance>
+      },
+      {
+        path: "/sendmoney",
+        element: <SendMoney></SendMoney>
+      },
+      {
+        path: "/cashout",
+        element: <Cashout></Cashout>
+      },
+      {
+        path: "/cashin",
+        element: <Cashin></Cashin>
+      },
+      //for agent
+      {
+        path: "/transaction",
+        element: <TransactionManage></TransactionManage>
+      },
+      {
+        path: "/history",
+        element: <AgentTransaction></AgentTransaction>
+      },
+      //Admin Route
+      {
+        path: "/usermanagement",
+        element: <UserManagement></UserManagement>
+      },
+      {
+        path: "/alltransaction",
+        element: <AllTransaction></AllTransaction>
       }
 
     ]
